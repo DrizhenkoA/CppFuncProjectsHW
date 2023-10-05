@@ -10,3 +10,7 @@ chastlivoe(chislo) программа определяет является ли
 maximal chislo(cemiznach) максимальное число из 7 натуральных чисел
 
 _**#Домашняя работа 2.10**_
+
+opredeleniеSimvola 
+
+stoimostRasgovora 
