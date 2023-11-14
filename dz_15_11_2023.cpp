@@ -75,37 +75,3 @@ int main()                               //задание 4
 {
     srand(time(NULL));
     setlocale(LC_ALL, "rus");
-    float min = -2 + rand() % (9 + 1 - 2);
-    float max = -2 + rand() % (9 + 1 - 2);
-    int n, maxn = 0, minn = 0, c1 = 0, c2 = 0;
-    int sumotr = 0, proizvdip = 1, proizvchet = 1;
-    cout << "n - ";
-    cin >> n;
-    int ar[10];
-    for (int i = n; i < 10; i++) {
-        c1 = i;
-        c2 = i;
-        int r = - 2 + rand() % (9 + 1 - 2);
-        ar[i] = r;
-        max = ar[0];
-        min = ar[0];
-        if (r < min) {
-            min = r;
-            minn = c1;
-        }
-        if (r > max) {
-            max = r;
-            maxn = c2;
-        }
-        if (r < 0) {
-            sumotr += r;
-        }
-        if (r % 2 == 0) {
-            proizvchet *= r;
-        }
-    }
-
-    for (int i = minn - 1; i < maxn; i++) {
-        proizvdip *= ar[i];
-    }
-}
