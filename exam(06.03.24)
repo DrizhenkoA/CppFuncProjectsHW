@@ -1,0 +1,185 @@
+#include <iostream>
+#include <string>
+#define random(min,max) (min + rand() % (max - min + 1))
+using namespace std;
+const int SIZE = 3;
+
+void fillArr(int** arr) {
+	int size = _msize(arr) / sizeof(arr[0]);
+	int size2 = _msize(arr[0]) / sizeof(arr[0][0]);
+	for (int i = 0, k = 1; i < size; i++) {
+		for (int j = 0; j < size2; j++) {
+			arr[i][j] = random(1,9);
+		}
+	}
+} 
+
+void showArr(int** arr) {
+	int size = _msize(arr) / sizeof(arr[0]);
+	int size2 = _msize(arr[0]) / sizeof(arr[0][0]);
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size2; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void arrCopy(int**& arr, int**& arr2) {		//7
+	int size = _msize(arr) / sizeof(arr[0]);
+	int size2 = _msize(arr[0]) / sizeof(arr[0][0]);
+	for (int i = 0; i < size2; i++) {
+		arr2[i] = new int[size2];
+	}
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size2; j++) {
+			arr2[i][j] = arr[i][j];
+		}
+	}
+}
+
+int symbolNumbers(const char* a) {					//13
+	int count = 0;
+	while (a[count] != '\0'){
+		count++;
+	}
+	return count;
+}
+
+
+void deleteElement(int*& arr, int index) {		//8
+	int size = _msize(arr) / sizeof(arr[0]);
+	int* buf = new int[size - 1];
+	for (int i = 0; i < index; i++){
+		buf[i] = arr[i];
+	}
+	for (int i = index+1; i < size; i++) {
+		buf[i-1] = arr[i];
+	}
+	delete[] arr;
+	arr = buf;
+	cout << endl << "элемент с индексом "<< index << " удален" << endl;
+}
+
+void arrAdd(int**& arr, int*& arr2, int index) {    //9 
+	int size = _msize(arr) / sizeof(arr[0]);
+	int size2 = _msize(arr[0]) / sizeof(arr[0][0]);
+	int size3 = _msize(arr2) / sizeof(arr2[0]);
+
+	int** buf = new int* [size + 1];
+
+	int* addArrayCopy = new int[size3];
+	for (int i = 0; i < size3; i++) {
+		addArrayCopy[i] = arr2[i];
+	}
+
+	for (int i = 0; i < index; i++) {
+		buf[i] = arr[i];
+	}
+
+	buf[index] = addArrayCopy;
+
+	for (int i = index; i < size; i++) {
+		buf[i + 1] = arr[i];
+	}
+
+	delete[] arr;
+	arr = buf;
+}
+
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	srand(time(NULL));
+	/*float a, b, c, d;													//1  //1 2 3 4 5 7 8 9 13 =  24
+	float avg;
+	cout << "vvedite 4 chisla" << endl;
+	cin >> a >> b >> c >> d;
+	cout << "summa = " << a + b + c + d << endl;
+	avg = (a + b + c + d) / 4;
+	cout << "average score = " << avg << endl;*/
+
+	//for (int i = 2; i < 40; i+=2){									//2
+	//	cout << i << " ";
+	//}
+
+	//int a;
+	//cout << "vvedite storony kvadrata " << endl;                       //3
+	//cin >> a;
+	//for (int i = 0; i < a; i++){
+	//	cout << " " << endl;
+	//	for (int j = 0; j < i; j++){
+	//		cout << '*';
+	//	}
+	//}
+
+	//int a;																//4
+	//int count=0;
+	//cout << "введите число" << endl;
+	//cin >> a;
+	//if (a == 0) count = 1;
+	//else {
+	//	while (a != 0) {
+	//		a = a / 10;
+	//		count++;
+	//	}
+	//}
+	//cout << "число содержит " << count << " разряда" << endl;
+	
+	//int arr[SIZE];																	//5
+	//int min, max;
+	//cout << "vvedite min, max" << endl;
+	//cin >> min >> max;
+	//if (min > max) swap(min, max);
+	//for (int i = 0; i < SIZE; i++){
+	//	arr[i] = random(min, max);
+	//	cout << arr[i] << " ";
+	//}
+
+	int** arr = new int* [SIZE];											//6 dodelat'! , 9 (gotovo)
+	int* arr2 = new int [SIZE]{1,2,3};
+	for (int i = 0; i < SIZE; i++){
+		arr[i] = new int[SIZE];
+	}
+
+
+	fillArr(arr);                                                           
+	showArr(arr);
+	arrAdd(arr, arr2,1);
+	cout << endl;
+	showArr(arr);
+	
+	//int** arr = new int* [SIZE];                                      //7
+	//int** arr2 = new int* [SIZE];
+	//for (int i = 0; i < SIZE; i++) {
+	//	arr[i] = new int[SIZE];
+	//}
+
+	//fillArr(arr);
+	//showArr(arr);
+	//arrCopy(arr, arr2);
+	//cout << endl << endl;
+	//showArr(arr2);
+
+	const char* a = "amogus";                                                             //13
+	cout << a << endl;
+	cout << "кол-во символов в строке - " << symbolNumbers(a);
+
+	//int* arr = new int[SIZE] {1, 2, 3, 4, 5};                                        //8
+	//int index = 3;
+	// 
+	//for (int i = 0; i < SIZE; i++) {
+	//	cout << arr[i] << " ";
+	//}
+	//deleteElement(arr, index);
+	//for (int i = 0; i < SIZE-1; i++) {
+	//	cout << arr[i] << " ";
+	//}
+	//cout << endl;
+
+
+
+	
+
+}
